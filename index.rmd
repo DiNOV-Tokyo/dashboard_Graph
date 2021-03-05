@@ -59,5 +59,7 @@ fig
 
 ```{r}
 
+hist(iris$Sepal.Length)
+
 ```
 
