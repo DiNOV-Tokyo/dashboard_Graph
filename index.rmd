@@ -11,6 +11,9 @@ output:
 # https://ramikrispin.github.io/2020/09/deploying-flexdashboard-on-github-pages/
 # https://plotly.com/r/
 library(flexdashboard)
+library(tidyverse)
+library(echarts4r)
+library(nycflights13) # data
 
 ```
 
