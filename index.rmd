@@ -11,6 +11,7 @@ output:
 # https://ramikrispin.github.io/2020/09/deploying-flexdashboard-on-github-pages/
 # https://plotly.com/r/
 library(flexdashboard)
+
 ```
 
 Column {data-width=650}
@@ -58,6 +59,8 @@ fig
 ### Chart C
 
 ```{r}
+
+hist(iris$Sepal.Width)
 
 ```
 
