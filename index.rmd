@@ -91,7 +91,33 @@ fig
 
 ```{r}
 
-hist(iris$Sepal.Width)
+library(tidyverse)
+library(lubridate)
+library(ggtext)
+library(gtrendsR)
+library(showtext)
+
+trend_raw <- gtrends("Trump", time = "2020-01-01 2020-12-31")
+
+trend <- trend_raw %>% 
+  collapse::unlist2d() %>% 
+  as_tibble() %>% 
+  filter(.id == "interest_over_time") %>% 
+  select(date, hits) %>% 
+  mutate(
+    tiles = 1,
+    date = as_date(date),
+    hits = hits %>% 
+      str_replace("<1", "0") %>% 
+      as.numeric()
+  )
+
+trend %>% 
+  ggplot(aes(date, tiles, height = 50*tiles, fill = hits)) + 
+  geom_tile() + 
+  scale_x_date(date_breaks = "months", date_labels = month.abb) +
+  scale_y_continuous(limits = c(-100, NA)) +
+  coord_polar(start = 0)
 
 ```
 
