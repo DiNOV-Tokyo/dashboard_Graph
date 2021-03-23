@@ -17,6 +17,11 @@ library(nycflights13) # data
 
 ```
 
+
+1st example
+=====================================   
+
+
 Column {data-width=650}
 -----------------------------------------------------------------------
 
@@ -121,3 +126,25 @@ trend %>%
 
 ```
 
+2nd example
+=====================================   
+
+```{r lollipop}
+
+library(ggplot2)
+
+mtcars$car <- row.names(mtcars)
+
+mtcars_mean <- mtcars %>%
+  arrange(disp) %>%
+  mutate(mean_disp = mean(disp),
+         flag = ifelse(disp - mean_disp > 0, TRUE, FALSE),
+         car = factor(car, levels = .$car))
+
+ggplot(mtcars_mean, aes(x = disp, y = car, color = flag)) +
+  geom_segment(aes(x = mean_disp, y = car, xend = disp, yend = car)) +
+  geom_point(size = 5)+
+  scale_colour_manual(values = c("red", "blue")) +
+  labs(title = "Displacement by Car") 
+
+```
