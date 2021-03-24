@@ -129,6 +129,12 @@ trend %>%
 2nd example
 =====================================   
 
+
+Column
+-----------------------------------------------------------------------
+
+### Lollipop graph
+
 ```{r lollipop}
 
 library(ggplot2)
@@ -146,5 +152,29 @@ ggplot(mtcars_mean, aes(x = disp, y = car, color = flag)) +
   geom_point(size = 5)+
   scale_colour_manual(values = c("red", "blue")) +
   labs(title = "Displacement by Car") 
+
+```
+
+
+### table1
+
+
+```{r table1}
+
+library(table1)
+library(tidyverse)
+
+dat <- diamonds
+
+label(dat$carat) <- "Carat"
+label(dat$cut) <- "Cut"
+label(dat$depth) <- "depth"
+label(dat$table) <- "table"
+
+units(dat$price) <- "doller"
+units(dat$depth) <- "mm"
+
+table1(~ carat + cut + depth + table + price, data=dat)
+
 
 ```
