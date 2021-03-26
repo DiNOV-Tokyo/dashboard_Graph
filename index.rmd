@@ -155,6 +155,21 @@ ggplot(mtcars_mean, aes(x = disp, y = car, color = flag)) +
 
 ```
 
+### Probalility density plot
+
+```{r prob}
+
+library(pdplot2)
+
+pdplot2(seq(-10, 10, 0.01), mean=c(1,0,-1), sd=c(0.5,1.5,2.5), type="normal", show.color=TRUE)
+
+
+
+
+
+```
+
+
 Row
 ----------------------------------------------------
 
@@ -219,13 +234,10 @@ line_pos <- data.frame(
 df <- merge(x=df, y=line_pos, by="date", all = TRUE)
 df <- df[with(df, order(date, status)), ]
 
-head(df)
-
 text_offset <- 0.05
 
 df$month_count <- ave(df$date==df$date, df$date, FUN=cumsum)
 df$text_position <- (df$month_count * text_offset * df$direction) + df$position
-head(df)
 
 month_buffer <- 2
 
