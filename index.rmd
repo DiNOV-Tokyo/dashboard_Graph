@@ -214,7 +214,6 @@ df <-data.frame(
 
 df$date <- with(df, ymd(sprintf('%04d%02d%02d', year, month, 1)))
 df <- df[with(df, order(date)), ]
-head(df)
 
 status_levels <- c("good", "bad")
 status_colors <- c("#0070C0", "#00B050")
