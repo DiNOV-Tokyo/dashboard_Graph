@@ -7,6 +7,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, error = FALSE, message = FALSE)
 # https://dinov-tokyo.github.io/flexdashboard_ex/
 # https://ramikrispin.github.io/2020/09/deploying-flexdashboard-on-github-pages/
 # https://plotly.com/r/
@@ -14,6 +15,12 @@ library(flexdashboard)
 library(tidyverse)
 library(echarts4r)
 library(nycflights13) # data
+library(wesanderson)
+library(plotly)
+
+library(ggridges)
+library(ggplot2)
+
 
 ```
 
@@ -178,20 +185,29 @@ Row
 
 ```{r table1}
 
-library(table1)
-library(tidyverse)
+library(ggridges)
+ 
+pal <- wes_palette(7, name = "Zissou1", type = "continuous")
 
-dat <- diamonds
+data_url <- url("https://raw.githubusercontent.com/billynguyenlss/TMDB-Box/master/data/personal%20additional%20data/full_additional_features_2.csv")
+blockbuster_data <- read.csv(data_url, na.strings=c("", '#N/A', '[]', '0'))
 
-label(dat$carat) <- "Carat"
-label(dat$cut) <- "Cut"
-label(dat$depth) <- "depth"
-label(dat$table) <- "table"
-
-units(dat$price) <- "doller"
-units(dat$depth) <- "mm"
-
-table1(~ carat + cut + depth + table + price, data=dat)
+blockbuster_data %>% 
+  select("genres1", "new_revenue") %>% 
+  filter(genres1 %in% c("Action", "Drama", "Science Fiction", "Animation", "Mystery", "War", "Crime")) %>% 
+  ggplot(aes(x = new_revenue, y = genres1, fill = genres1)) +
+  geom_density_ridges()  + 
+  theme(legend.position = "none",
+        axis.text.y = element_text(angle = 45, hjust = 1)) +
+  scale_x_continuous(
+      labels = scales::number_format(accuracy = 1,
+                                     decimal.mark = ',')) +
+  labs(title    = "Blockbusters",
+       x = "New revenue",
+       y = "Genres") +
+  xlim(-10000, 50000000) +
+  scale_fill_manual(values = pal) +
+  theme_minimal()
 
 
 ```
