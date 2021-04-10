@@ -313,3 +313,15 @@ print(timeline_plot)
 
 
 ```
+
+3rd example
+=====================================   
+
+```{r }
+
+library(worldmet)
+library(openair)
+met_braunschweig <- importNOAA(code = "103480-99999", year =2020)
+windRose(met_braunschweig)
+
+```
