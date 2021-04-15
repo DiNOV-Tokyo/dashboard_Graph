@@ -35,7 +35,6 @@ Column {data-width=650}
 ### Chart A
 
 ```{r}
-library(plotly)
 
 Animals <- c("giraffes", "orangutans", "monkeys")
 SF_Zoo <- c(20, 14, 23)
@@ -144,7 +143,6 @@ Column
 
 ```{r lollipop}
 
-library(ggplot2)
 
 mtcars$car <- row.names(mtcars)
 
@@ -309,7 +307,9 @@ timeline_plot<-timeline_plot+geom_text(data=month_df, aes(x=month_date_range,y=-
 timeline_plot<-timeline_plot+geom_text(data=year_df, aes(x=year_date_range,y=-0.2,label=year_format, fontface="bold"),size=2.5, color='black')
 # Show text for each milestone
 timeline_plot<-timeline_plot+geom_text(aes(y=text_position,label=check),size=2.5)
-print(timeline_plot)
+
+ggplotly(timeline_plot)
+#print(timeline_plot)
 
 
 ```
