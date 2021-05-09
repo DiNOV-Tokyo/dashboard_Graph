@@ -317,11 +317,34 @@ ggplotly(timeline_plot)
 3rd example
 =====================================   
 
-```{r }
+```{r worldmet}
 
 library(worldmet)
 library(openair)
 met_braunschweig <- importNOAA(code = "103480-99999", year =2020)
 windRose(met_braunschweig)
+
+```
+
+4th crosstalk example
+=====================================   
+
+```{r table}
+
+library(threejs)
+library(crosstalk)
+library(DT)
+
+
+data(LeMis)
+
+sd = SharedData$new(data.frame(Name = V(LeMis)$label))
+bscols(
+  graphjs(LeMis, brush=TRUE, crosstalk=sd),
+  datatable(sd, rownames=FALSE, options=list(dom='tp')
+            )
+)
+
+
 
 ```
