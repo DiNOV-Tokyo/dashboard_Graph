@@ -317,6 +317,10 @@ ggplotly(timeline_plot)
 3rd example
 =====================================   
 
+Column
+-----------------------------------------------------------------------
+
+
 ```{r worldmet}
 
 library(worldmet)
@@ -325,6 +329,23 @@ met_braunschweig <- importNOAA(code = "103480-99999", year =2020)
 windRose(met_braunschweig)
 
 ```
+
+Column
+-----------------------------------------------------------------------
+
+```{r troopUS}
+
+library(troopdata)
+
+hostlist <- c("JPN", "GBR", "CAN")
+US_troops <- get_troopdata(host = hostlist, startyear = 1970, endyear = 2020)
+US_troops %>% 
+  ggplot()+
+  geom_point(aes(year, troops, col=countryname))+
+  scale_color_manual(values = wes_palette("Royal1"))
+
+```
+
 
 4th crosstalk example
 =====================================   
