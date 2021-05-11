@@ -320,6 +320,8 @@ ggplotly(timeline_plot)
 Column
 -----------------------------------------------------------------------
 
+### NOAA Plot
+
 
 ```{r worldmet}
 
@@ -330,8 +332,7 @@ windRose(met_braunschweig)
 
 ```
 
-Column
------------------------------------------------------------------------
+### US Troops
 
 ```{r troopUS}
 
@@ -346,6 +347,23 @@ US_troops %>%
 
 ```
 
+Row
+------------------------------------------------------------------------
+
+### ggbeeswarm
+
+
+```{r ggbeeswarm}
+
+library(ggbeeswarm)
+library(gghalves)
+
+ggplot(mpg,aes(class, hwy, col=factor(class))) + 
+  geom_beeswarm(size=1.4)+
+  geom_half_boxplot(side="l")
+
+
+```
 
 4th crosstalk example
 =====================================   
