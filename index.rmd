@@ -155,7 +155,7 @@ mtcars_mean <- mtcars %>%
 ggplot(mtcars_mean, aes(x = disp, y = car, color = flag)) +
   geom_segment(aes(x = mean_disp, y = car, xend = disp, yend = car)) +
   geom_point(size = 5)+
-  scale_colour_manual(values = c("red", "blue")) +
+  scale_colour_manual(values = c("red", "green")) +
   labs(title = "Displacement by Car") 
 
 ```
