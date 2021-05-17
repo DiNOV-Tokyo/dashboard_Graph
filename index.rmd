@@ -347,7 +347,7 @@ US_troops %>%
 
 ```
 
-Row
+Column
 ------------------------------------------------------------------------
 
 ### ggbeeswarm
@@ -364,6 +364,34 @@ ggplot(mpg,aes(class, hwy, col=factor(class))) +
 
 
 ```
+
+### ggimg
+
+```{r ggimg}
+
+library(ggimg)
+
+
+posters <- mutate(posters,
+                  path = file.path(system.file("extdata", package="ggimg"), img)
+)
+
+ggplot(posters) +
+  geom_rect_img(aes(
+    xmin = year - 0.5,
+    xmax = year + 0.5,
+    ymin = stars - 0.25,
+    ymax = stars + 0.25,
+    img = path
+  )) +
+  theme_minimal() +
+  labs(x="Released Year",
+       y="Rated Star") 
+
+
+
+```
+
 
 4th crosstalk example
 =====================================   
