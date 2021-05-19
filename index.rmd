@@ -164,6 +164,7 @@ ggplot(mtcars_mean, aes(x = disp, y = car, color = flag)) +
 
 ```{r prob}
 
+# devtools::install_github("tegedik/pdplot2")
 library(pdplot2)
 
 pdplot2(seq(-10, 10, 0.01), mean=c(1,0,-1), sd=c(0.5,1.5,2.5), type="normal", show.color=TRUE)
