@@ -413,8 +413,70 @@ ggplot(iris) +
 
 ```
 
+4th giraph example 
+=====================================
 
-4th crosstalk example
+
+Column {data-width=10}
+-----------------------------------------------------------------------
+```{r ggiraph1}
+
+library(tidycensus)
+library(ggiraph)
+library(patchwork)
+
+vt_income <- get_acs(
+  geography = "county",
+  variables = "B19013_001",
+  state = "VT",
+  year = 2019,
+  geometry = TRUE
+) %>%
+  mutate(NAME = str_remove(NAME, " County, Vermont"))
+
+
+```
+
+Column
+------------------------------------------------------------------
+
+```{r ggiraph}
+
+# https://gist.github.com/walkerke/3628171efae66421c299c9f2dbee0f34
+
+vt_map <- ggplot(vt_income, aes(fill = estimate)) + 
+  geom_sf_interactive(aes(data_id = GEOID)) + 
+  scale_fill_distiller(palette = "Greens",
+                       direction = 1, 
+                       guide = FALSE) + 
+  theme_void()
+
+vt_plot <- ggplot(vt_income, aes(x = estimate, y = reorder(NAME, estimate), 
+                                 fill = estimate)) +
+  geom_errorbarh(aes(xmin = estimate - moe, xmax = estimate + moe)) +
+  geom_point_interactive(color = "black", size = 4, shape = 21,
+                         aes(data_id = GEOID)) +
+  scale_fill_distiller(palette = "Greens", direction = 1,
+                       labels = scales::dollar) + 
+  labs(title = "Household income by county in Vermont",
+       subtitle = "2015-2019 American Community Survey",
+       y = "",
+       x = "ACS estimate (bars represent margin of error)",
+       fill = "ACS estimate") + 
+  theme_minimal()
+
+girafe(ggobj = vt_map + vt_plot, width_svg = 10, height_svg = 4) %>%
+  girafe_options(opts_hover(css = "fill:cyan;"))
+
+
+
+```
+
+
+
+
+
+5th crosstalk example
 =====================================   
 
 ```{r table}
