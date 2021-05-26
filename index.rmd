@@ -390,6 +390,26 @@ ggplot(posters) +
        y="Rated Star") 
 
 
+```
+
+Column
+--------------------------------------------------------------- 
+### Manu color palette
+
+```{r manu}
+
+library(Manu)
+
+ymin <- min(iris$Sepal.Length)
+ymax <- max(iris$Sepal.Length)
+
+ggplot(iris) +
+  geom_quasirandom(aes(x = factor(Species), y = Sepal.Length, colour = factor(Species))) +
+  xlab("Species") +
+  ylab("Sepal.Length") +
+  theme_bw() +
+  scale_y_continuous(limits = c(ymin, ymax))+
+  scale_colour_manual(values = get_pal("Hoiho"))
 
 ```
 
