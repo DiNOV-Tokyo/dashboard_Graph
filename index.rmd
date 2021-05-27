@@ -413,6 +413,18 @@ ggplot(iris) +
 
 ```
 
+### Wes andersen pallete
+
+```{r pallete}
+
+library("wesanderson")
+ggplot(mtcars, aes(disp, fill=factor(vs))) +  
+  geom_histogram() +
+  scale_fill_manual(values = wes_palette("BottleRocket1"))
+
+```
+
+
 4th giraph example 
 =====================================
 
