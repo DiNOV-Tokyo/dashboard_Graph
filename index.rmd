@@ -425,13 +425,13 @@ ggplot(mtcars, aes(disp, fill=factor(vs))) +
 ```
 
 
-4th giraph example 
+4th graph example 
 =====================================
 
 
-Column {data-width=10}
+Column
 -----------------------------------------------------------------------
-```{r ggiraph1}
+```{r ggiraph1, include=FALSE}
 
 library(tidycensus)
 library(ggiraph)
@@ -484,7 +484,34 @@ girafe(ggobj = vt_map + vt_plot, width_svg = 10, height_svg = 4) %>%
 
 ```
 
+Column
+-----------------------------------------------------------------------
+```{r gt}
 
+
+library(tidyverse)
+library(gt)
+library(gapminder)
+
+
+gapminder %>% 
+  filter(year=="1997") %>% 
+  gt(
+    groupname_col = "continent",
+    rowname_col = "country"
+  ) %>% 
+  data_color(
+    columns = vars(`lifeExp`, `pop`, `gdpPercap`),
+    colors = scales::col_numeric(
+      paletteer::paletteer_d(
+        palette = "ggsci::red_material") %>% as.character(),
+      domain = NULL
+    )
+  )
+
+
+
+```
 
 
 
