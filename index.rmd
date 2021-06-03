@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    source_code: embed
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +21,7 @@ library(plotly)
 
 library(ggridges)
 library(ggplot2)
-
+library(ggrepel)
 
 ```
 
@@ -102,7 +103,7 @@ fig
 
 ```{r}
 
-library(tidyverse)
+
 library(lubridate)
 library(ggtext)
 library(gtrendsR)
@@ -218,7 +219,7 @@ blockbuster_data %>%
 
 ```{r timeline}
 
-library(ggplot2)
+
 library(scales)
 library(lubridate)
 
@@ -314,6 +315,25 @@ ggplotly(timeline_plot)
 
 
 ```
+
+Column
+-----------------------------------------------------------------------
+
+```{r radar}
+
+library(ggpmisc)
+library(broom)
+
+ggplot(lynx, as.numeric = FALSE) + 
+  geom_line() + 
+  stat_peaks(colour = "green") +
+  stat_peaks(geom = "text", colour = "blue", size = 7, angle = 70, hjust = -0.1, x.label.fmt = "%Y") +
+  stat_peaks(geom = "rug", colour = "red", sides = "b") +
+  expand_limits(y = 8000)
+
+```
+
+
 
 3rd example
 =====================================   
