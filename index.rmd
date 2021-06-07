@@ -319,6 +319,8 @@ ggplotly(timeline_plot)
 Column
 -----------------------------------------------------------------------
 
+### ggpmisc
+
 ```{r radar}
 
 library(ggpmisc)
@@ -333,7 +335,16 @@ ggplot(lynx, as.numeric = FALSE) +
 
 ```
 
+### pliman
 
+```{r pliman}
+
+library(pliman)
+
+leaves <- image_import(image_pliman("la_leaves.JPG"))
+image_show(leaves)
+
+```
 
 3rd example
 =====================================   
