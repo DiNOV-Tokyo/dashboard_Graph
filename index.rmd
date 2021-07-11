@@ -439,7 +439,7 @@ ggplot(iris) +
   xlab("Species") +
   ylab("Sepal.Length") +
   theme_bw() +
-  scale_y_continuous(limits = c(ymin, ymax))+
+  scale_y_continuous(limits = c(ymin, ymax)) #+
   scale_colour_manual(values = get_pal("Hoiho"))
 
 ```
@@ -508,6 +508,24 @@ plot(p2)
 
 ```
 
+## Sabre
+
+Column
+-----------------------------------------------------------------------
+
+```{r sabre}
+
+library(sabre)
+library(sf)
+
+data("regions1")
+data("regions2")
+
+regions_vm = vmeasure_calc(x = regions1, y = regions2, x_name = z, y_name = z)
+
+plot(regions_vm$map1["rih"], main = "Map1: rih")
+
+```
 
 Interactive graph example 
 =====================================
