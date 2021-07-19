@@ -534,24 +534,24 @@ Column
 
 ```{r gmgeostats}
 
-library(easyclimate)
+#library(easyclimate)
 
-library(terra)
+#library(terra)
 
-coords_poly <- vect("POLYGON ((-4.5 41, -4.5 40.5, -5 40.5, -5 41))")
+#coords_poly <- vect("POLYGON ((-4.5 41, -4.5 40.5, -5 40.5, -5 41))")
 
-ras_tmax <- get_daily_climate(
-  coords_poly,
-  period = c("2012-01-01", "2012-08-01"),
-  climatic_var = "Tmax",
-  output = "raster" # return raster
-  )
+#ras_tmax <- get_daily_climate(
+#  coords_poly,
+#  period = c("2012-01-01", "2012-08-01"),
+#  climatic_var = "Tmax",
+#  output = "raster" # return raster
+#  )
 
-ras_tmax <- ras_tmax/100
+#ras_tmax <- ras_tmax/100
 
-par(mfrow = c(1, 2))
-terra::plot(ras_tmax, 1, col = rev(heat.colors(20)), type = "continuous", smooth = TRUE, range = c(10, 35), legend = FALSE, mar=c(4, 2, 4, 2), main = "January 1 2012")
-terra::plot(ras_tmax, 2, col = rev(heat.colors(20)), type = "continuous", smooth = TRUE, range = c(10, 35), mar = c(4, 1, 4, 3), main = "August 1 2012")
+#par(mfrow = c(1, 2))
+#terra::plot(ras_tmax, 1, col = rev(heat.colors(20)), type = "continuous", smooth = TRUE, range = c(10, 35), legend = FALSE, mar=c(4, 2, 4, 2), main = "January 1 2012")
+#terra::plot(ras_tmax, 2, col = rev(heat.colors(20)), type = "continuous", smooth = TRUE, range = c(10, 35), mar = c(4, 1, 4, 3), main = "August 1 2012")
 
 ```
 
@@ -579,6 +579,23 @@ p3 <- ggplot(iris, aes(x = Petal.Length, y = Petal.Width, color = Sepal.Length))
   scale_color_material_c(palette = "rainbow")
 
 plots(p1, p2, p3, n_columns = 2)
+
+
+```
+
+row
+-----------------------------------------------------
+
+```{r correlation}
+
+
+library(see) 
+library(ggraph)
+library(correlation)
+
+diamonds %>%
+  correlation(partial = TRUE) %>%
+  plot()
 
 
 ```
