@@ -458,10 +458,12 @@ ggplot(mtcars, aes(disp, fill=factor(vs))) +
 4th graph example 
 =====================================
 
-### ggside
 
 Column
 -----------------------------------------------------------------------
+
+### ggside
+
 ```{r ggside}
 
 library(ggside)
@@ -508,10 +510,7 @@ plot(p2)
 
 ```
 
-## Sabre
-
-Column
------------------------------------------------------------------------
+### Sabre
 
 ```{r sabre}
 
@@ -527,10 +526,11 @@ plot(regions_vm$map1["rih"], main = "Map1: rih")
 
 ```
 
-## gmGeostats
-
 Column
 -----------------------------------------------------------------------
+
+## gmGeostats
+
 
 ```{r gmgeostats}
 
@@ -555,9 +555,29 @@ Column
 
 ```
 
+### cowplot
 
-Row 
----------------------------------------
+```{r cowplot}
+
+library(cowplot)
+library(modeldata)
+
+data(penguins)
+
+p1 <- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + 
+  geom_point()
+
+p2 <- ggplot(penguins, aes(bill_depth_mm, body_mass_g, color = species)) + 
+  geom_point()
+
+plot_grid(p1, p2, labels = c('Length', 'Depth'), label_size = 16)
+
+```
+
+
+Column
+-----------------------------------------------------------------------
+### see
 
 ```{r see}
 
@@ -583,8 +603,7 @@ plots(p1, p2, p3, n_columns = 2)
 
 ```
 
-row
------------------------------------------------------
+### correlation
 
 ```{r correlation}
 
