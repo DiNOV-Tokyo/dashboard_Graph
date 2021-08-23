@@ -606,6 +606,27 @@ diamonds %>%
 ```
 
 
+5th graph example 
+=====================================
+
+
+Column
+-----------------------------------------------------------------------
+
+### Ghibli
+
+```{r gihbli}
+
+library(ghibli)
+
+mtcars %>% ggplot(aes(drat, mpg, color = carb)) +
+  geom_jitter(size = 2) +
+  theme_minimal() +
+  scale_colour_ghibli_c("YesterdayLight", direction = -1)
+
+```
+
+
 Interactive graph example 
 =====================================
 
