@@ -626,6 +626,26 @@ mtcars %>% ggplot(aes(drat, mpg, color = carb)) +
 
 ```
 
+### calendR
+
+```{r calendR}
+
+library(calendR)
+calendR(year = 2020,
+        month = 2,  
+        start = "M",
+        special.days = c(1, 6, 18, 22),
+        special.col = "#b5f222",
+        text = c("Holiday", "Running", "Class"), 
+        text.pos = c(7, 16, 25),
+        text.size = 4,
+        text.col = 2,
+        lunar = TRUE,         
+        lunar.col = "gray60", 
+        lunar.size = 7)       
+
+
+```
 
 Interactive graph example 
 =====================================
